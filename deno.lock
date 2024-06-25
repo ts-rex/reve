@@ -1,0 +1,58 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@std/assert@^0.225.2": "jsr:@std/assert@0.225.2",
+      "jsr:@std/encoding@^0.224.2": "jsr:@std/encoding@0.224.2",
+      "jsr:@std/fs@^0.229.1": "jsr:@std/fs@0.229.1",
+      "jsr:@std/path@^0.225.1": "jsr:@std/path@0.225.1",
+      "npm:superjson@1.13.3": "npm:superjson@1.13.3"
+    },
+    "jsr": {
+      "@std/assert@0.225.2": {
+        "integrity": "6fd566c3ea01654d29c2b633298b7fc7599716336233852eb87e9843658fa192"
+      },
+      "@std/encoding@0.224.2": {
+        "integrity": "bd9ef45d6028296440005804db7fc8fcc86e72fc1a19bb77684fb39c4a613672"
+      },
+      "@std/fs@0.229.1": {
+        "integrity": "38d3fb31f0ca0a8c1118e039939188f32e291a3f7f17dc0868fec22024bdfadd",
+        "dependencies": [
+          "jsr:@std/assert@^0.225.2",
+          "jsr:@std/path@^0.225.1"
+        ]
+      },
+      "@std/path@0.225.1": {
+        "integrity": "8c3220635a73730eb51fe43de9e10b79e2724a5bb8638b9355d35ae012fd9429"
+      }
+    },
+    "npm": {
+      "copy-anything@3.0.5": {
+        "integrity": "sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==",
+        "dependencies": {
+          "is-what": "is-what@4.1.16"
+        }
+      },
+      "is-what@4.1.16": {
+        "integrity": "sha512-ZhMwEosbFJkA0YhFnNDgTM4ZxDRsS6HqTo7qsZM08fehyRYIYa0yHu5R6mgo1n/8MgaPBXiPimPD77baVFYg+A==",
+        "dependencies": {}
+      },
+      "superjson@1.13.3": {
+        "integrity": "sha512-mJiVjfd2vokfDxsQPOwJ/PtanO87LhpYY88ubI5dUB1Ab58Txbyje3+jpm+/83R/fevaq/107NNhtYBLuoTrFg==",
+        "dependencies": {
+          "copy-anything": "copy-anything@3.0.5"
+        }
+      }
+    }
+  },
+  "remote": {
+    "https://deno.land/std@0.203.0/dotenv/load.ts": "0636983549b98f29ab75c9a22a42d9723f0a389ece5498fe971e7bb2556a12e2",
+    "https://deno.land/std@0.203.0/dotenv/mod.ts": "1da8c6d0e7f7d8a5c2b19400b763bc11739df24acec235dda7ea2cfd3d300057"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/encoding@^0.224.2",
+      "jsr:@std/fs@^0.229.1"
+    ]
+  }
+}
