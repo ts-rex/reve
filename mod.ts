@@ -71,9 +71,11 @@ export class Reve {
       const watcher = Deno.watchFs(source)
       for await (const event of watcher) {
         if (["modify", "create"].includes(event.kind)) {
+          console.log(`Rebuilding resource \`${name}\``)
           this.#processResource(name, source)
           const mapString = this.#getMapString()
           await this.#buildOutfile(mapString)
+          console.log(`✅ Rebuilt resource \`${name}\``)
         }
       }
     })
