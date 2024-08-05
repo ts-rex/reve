@@ -1,15 +1,20 @@
 {
-  "tasks": {
-    "dev": "deno run --watch main.ts"
-  },
-  "name": "@ts-rex/reve",
-  "version": "0.0.6",
-  "exports": "./mod.ts",
-  "publish": {
-    "include": ["./mod.ts", "./README.md"]
-  },
-  "imports": {
-    "@std/encoding": "jsr:@std/encoding@^0.224.2",
-    "@std/fs": "jsr:@std/fs@^0.229.1"
-  }
+	"tasks": {
+		"dev": "deno run --watch main.ts"
+	},
+	"name": "@ts-rex/reve",
+	"version": "0.1.0",
+	"exports": "./mod.ts",
+	"publish": {
+		"include": ["./mod.ts", "./README.md"]
+	},
+	"imports": {
+		"@std/encoding": "jsr:@std/encoding@^0.224.2",
+		"@std/fs": "jsr:@std/fs@^0.229.1"
+	},
+	"fmt": {
+		"semiColons": false,
+		"indentWidth": 4,
+		"useTabs": true
+	}
 }
