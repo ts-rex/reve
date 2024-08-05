@@ -1,8 +1,9 @@
 import { encodeBase64 } from "@std/encoding"
 import { emptyDir, ensureFile } from "@std/fs"
-import { gzip } from "https://deno.land/x/compress@v0.4.5/mod.ts"
+// import { gzip } from "https://deno.land/x/compress@v0.4.5/mod.ts" TODO: vendor GZIP
 
 function sanitizeFilename(filename: string) {
+  // deno-lint-ignore no-control-regex
   const invalidChars = /[<>:"/\\|?*\x00-\x1F]/g
   const sanitized = filename.replace(invalidChars, "").replace(" ", "_")
   const trimmed = sanitized.trim()
@@ -37,9 +38,9 @@ export class Reve {
   #locked: boolean = false
   /**
    * @param url The base file url of the project, used to determine relative paths & the output folder
-   * @param [doGzip=false] Optionally enale gziping output files
-   */
-  constructor(private url: string, private doGzip: boolean = false) { }
+  */
+  // @param [doGzip=false] Optionally enale gziping output files
+  constructor(private url: string, /*private doGzip: boolean = false*/) { }
 
   #getAbsolutePath(relativePath: string) {
     return new URL(relativePath, this.url)
@@ -47,7 +48,7 @@ export class Reve {
 
   async #processResource(name: string, source: URL) {
     try {
-      const sourceBuff = (this.doGzip ? gzip : (v: Uint8Array) => v)(await Deno.readFile(source))
+      const sourceBuff = /*(this.doGzip ? gzip : (v: Uint8Array) => v)*/(await Deno.readFile(source))
       const transformed = encodeBase64(sourceBuff)
       const filename = sanitizeFilename(name)
       const path = this.#getAbsolutePath(`./reve/source/${filename}.ts`)
@@ -62,7 +63,7 @@ export class Reve {
     let mapString = "{"
     Array.from(this.#resources.entries()).forEach(([k, _]) => {
       mapString +=
-        `"${k}": ${this.doGzip?`gunzip(`:''}decodeBase64((await import("./source/${k}.ts")).default)${this.doGzip?`)`:''}`
+        `"${k}": ${''/*this.doGzip?`gunzip(`:''*/}decodeBase64((await import("./source/${k}.ts")).default)${''/*this.doGzip?`)`:''*/}`
     })
     mapString += "}"
     return mapString
@@ -73,7 +74,7 @@ export class Reve {
     await ensureFile(path)
     await Deno.writeTextFile(
       path,
-      `import { decodeBase64 } from "jsr:@std/encoding@^0.224.2"; ${this.doGzip?`import { gunzip } from "https://deno.land/x/compress@v0.4.5/mod.ts";`:''} export default ${mapString}`,
+      `import { decodeBase64 } from "jsr:@std/encoding@^0.224.2"; ${''/*this.doGzip?`import { gunzip } from "https://deno.land/x/compress@v0.4.5/mod.ts";`:''*/} export default ${mapString}`,
     )
   }
   /**
